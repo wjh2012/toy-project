@@ -18,6 +18,9 @@ def QnA(request):
 
 def honor(request):
     return render(request, 'first_app/honor.html',{})
+
+def about(request):
+    return render(request, 'first_app/about.html',{})
     
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)

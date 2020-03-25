@@ -21,9 +21,14 @@
 
             <nav>
                 <ul class="topnav">
-                    <li class="topnav-item"> <a href="">about</a></li>
-                    <li class="topnav-item"> <a href="">Login</a></li>
-                    <li class="topnav-item"> <a href="">회원가입</a></li>
+                    <li class="topnav-item"> <a href="{% url 'about' %}">about</a></li>
+                    {% if user.is_active %}
+                    <li class="topnav-item"> <a href="/">{{user.username}}</a></li>
+                    <li class="topnav-item"> <a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li class="topnav-item"> <a href="{% url 'login' %}">Login</a></li>
+                    <li class="topnav-item"> <a href="{% url 'join' %}">회원가입</a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>
