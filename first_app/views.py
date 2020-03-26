@@ -13,9 +13,7 @@ def AGORA(request):
 
 
 def AGGORA(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by(
-        "published_date"
-    )
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by("-published_date")
     return render(request, "first_app/AGGORA.html", {"posts": posts})
 
 
