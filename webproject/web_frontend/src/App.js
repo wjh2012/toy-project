@@ -5,12 +5,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css'
 import { Form, Navbar, Nav, NavDropdown, FormControl, Button } from 'react-bootstrap'
 
-import homeList from './content.list/home.list'
-import honorList from './content.list/honor.list'
-import schoolList from './content.list/school.list'
-import loveList from './content.list/love.list'
-import eatList from './content.list/eat.list'
-import freeList from './content.list/free.list'
+import homeList from './content.list/home/home.list'
+import honorList from './content.list/honor/honor.list'
+import schoolList from './content.list/school/school.list'
+import loveList from './content.list/love/love.list'
+import eatList from './content.list/eat/eat.list'
+import freeList from './content.list/free/free.list'
 
 function App() {
   return (
@@ -40,7 +40,7 @@ function App() {
 
       <div className="container mt-3">
         <Switch>
-          <Route exact path={["/","/home"]} component={homeList} />
+          <Route exact path={["/", "/home"]} component={homeList} />
           <Route exact path="/honor" component={honorList} />
           <Route exact path="/school" component={schoolList} />
           <Route exact path="/love" component={loveList} />
