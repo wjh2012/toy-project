@@ -10,7 +10,15 @@ userName
 guild
 date
 """
-sql = " "
+sql1 = "select * from GGOMG_BOT;"
 
-cursor.execute(sql)
+sql2 = "INSERT INTO GGOMG_BOT (word, exp) VALUES ('꼼장오','봇');"
+
+sql3 = "select * from sqlite_master;"
+
+cursor.execute(sql1)
+rep = cursor.fetchall()
+
+print(rep)
+
 con.close()
