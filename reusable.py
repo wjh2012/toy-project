@@ -1,3 +1,4 @@
+import datetime
 """
 @bot.event
 async def on_ready():
@@ -12,16 +13,8 @@ async def on_member_update(before, after):
             await after.guild.text_channels[0].send(f"안녕하세요. {after.name}님!")
 """
 
-a = "SELECT * " \
-    "FROM user " \
-    "WHERE username = 'scott'"
+a= [('꼼장오', '멍청이'), ('관호', '멍청이'), ('아냐', '깡통')]
 
-sql =   "CREATE TABLE IF NOT EXISTS GGOMG_BOT("\
-        "word text PRIMARY KEY,"\
-        "exp text,"\
-        "userID text,"\
-        "userName text,"\
-        "guild text,"\
-        "Date text)"
-print(a)
-print(sql)
+Q = [1.3, 2.4]
+print(', '.join('{:.2f}'.format(f) for f in Q))
+# 1.30, 2.40

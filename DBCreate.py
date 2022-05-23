@@ -10,14 +10,9 @@ userName
 guild
 date
 """
-
-sql =   "CREATE TABLE IF NOT EXISTS GGOMG_BOT("\
-        "word text PRIMARY KEY,"\
-        "exp text,"\
-        "userID text,"\
-        "userName text,"\
-        "guild text,"\
-        "Date text)"
-
+sql = "CREATE TABLE GGOMG_BOT(word text PRIMARY KEY, exp text,userID text,userName text,guild text,Date text)"
 cursor.execute(sql)
+con.commit()
+
+
 con.close()

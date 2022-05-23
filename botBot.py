@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import asyncio
 import sqlite3
+import datetime
 
 con = sqlite3.connect("C:/Users/wjh20/workdpace/discordBot/bot.db")
 cursor = con.cursor()
@@ -29,7 +30,7 @@ kal={
 }
 
 def checkGuild(guild):
-    if guild.id == Dongma:
+    if guild.id == Botserver:
         return True
     else:
         return False
@@ -72,25 +73,36 @@ async def on_message(message):
     if checkGuild(message.guild):
         if message.author == bot.user:
             return
-
         msg = message.content.split()
-
         if msg[0].startswith('!!'):
-            if len(msg)==1:
-                word = msg[0].removeprefix('!!')
-                sql = f'SELECT exp from GGOMG_BOT where word={word}'
-
+            if word=='배운말':
+                sql = "SELECT word, exp from GGOMG_BOT"
                 cursor.execute(sql)
-                exp = cursor.fetchall()
-
-                await message.channel.send(f'{exp}')
-
             else:
-                word = msg[0].removeprefix('!!')
-                
-
+                if len(msg)==1:
+                    word = msg[0].removeprefix('!!')
+                    try:
+                        sql = f"SELECT exp from GGOMG_BOT where word='{word}'"
+                        cursor.execute(sql)
+                        exp = cursor.fetchall()
+                        await message.channel.send(f'{exp[0][0]}')
+                    except:
+                        await message.channel.send('모르겠어요')
+                else:
+                    word = msg[0].removeprefix('!!')
+                    exp = ' '.join(msg[1:])
+                    try:
+                        sql = f"INSERT INTO GGOMG_BOT VALUES('{word}','{exp}','{message.author.id}','{message.author.name}','{message.guild.name}','{str(datetime.datetime.now())}')"
+                        cursor.execute(sql)
+                        con.commit()
+                        await message.channel.send(f'새로 배웠어요!\n{word}는(은) {exp}')
+                    except:
+                        sql = f"UPDATE GGOMG_BOT SET exp='{exp}', userID='{message.author.id}', userName='{message.author.name}', guild='{message.guild.name}', date='{str(datetime.datetime.now())}'"
+                        cursor.execute(sql)
+                        con.commit()
+                        await message.channel.send(f'다시 배웠어요!\n{word}은(는) {exp}')
         else:
-            return
+            pass
 
 
             
