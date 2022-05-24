@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-import asyncio
 import sqlite3
 import datetime
 
@@ -168,13 +167,19 @@ async def on_message(message):
     if checkGuild(message.guild):
         if message.author == bot.user:
             return
+
         if message.content in ('칼', '칼?'):
             onList = checkOnline(message.guild)
             voList = checkVoice(message.guild)
-            if onList and voList:
-                a_sub_b = [x for x in onList if x not in voList]
-                final = [x for x in a_sub_b if x.id in kal.values and x.id!=message.author]
-                menList = [x.mention for x in final]
-                await message.channel.send("".join(map(str, menList)),delete_after=5.0)           
+
+            a_sub_b = [x for x in onList if x not in voList]
+            a = [x for x in a_sub_b if x.id in kal.values() and x.id!=message.author.id]
+
+            menList = [x.mention for x in a]
+
+            if menList:
+                final = "".join(map(str, menList))
+                print(final)
+                await message.channel.send(final, delete_after=5.0)           
 
 bot.run(Token)
