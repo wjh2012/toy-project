@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<!--head 시작-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-size=1.0">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <title>WINA/main</title>
+</head>
+<!--head 끝-->
+<!--body 시작-->
+<body>
+    <header>
+        <div class="topnavbox">
+            <div id="sitename">
+                <a href="/"><h1>WINA</h1></a>
+            </div>
+
+            <nav>
+                <ul class="topnav">
+                    <li class="topnav-item"> <a href="{% url 'about' %}">about</a></li>
+                    {% if user.is_active %}
+                    <li class="topnav-item"> <a href="/">{{user.username}}</a></li>
+                    <li class="topnav-item"> <a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li class="topnav-item"> <a href="{% url 'login' %}">Login</a></li>
+                    <li class="topnav-item"> <a href="{% url 'join' %}">회원가입</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+
+        <div class="mainnavbox">
+            <nav>
+                <ul class="mainnav">
+                    <li class="nav-item"> <a href="{% url 'AGORA' %}">AGORA</a></li>
+                    <li class="nav-item"> <a href="{% url 'AGGORA' %}">아꼬라</a></li>
+                    <li class="nav-item"> <a href="{% url 'honor' %}">명예의 전당</a></li>
+                    <li class="nav-item"> <a href="{% url 'QnA' %}">Q＆A</a></li>
+                </ul>
+            </nav>
+            
+        </div>
+    </header>
+    {% block content %}
+    {% endblock %}
+</body>
+<!--body 끝-->
+</html>
