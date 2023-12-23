@@ -1,5 +1,5 @@
 import discord
-Token = 'OTc2NDg1MTEyMTEzOTQyNTU4.G-x05V.wAkJnB_ycrFSbJZhE__1rKxPKLcQo5miMgF25o'
+Token = ' '
 
 intents = discord.Intents.default()
 intents.members = True
@@ -7,7 +7,6 @@ intents.presences = True
 client = discord.Client(intents=intents)
 
 """채널 id
-동마중친구들
 267314298764787712
 텍스트=267314298764787712
 
